@@ -16,7 +16,7 @@ export default function EmptyState({ title, subtitle }) {
       <Text className="text-white font-psemibold text-xl mb-3 mt-2">{title}</Text>
       <CustomButton
         text="Create Video"
-        style="w-full"
+        style="w-full "
         onPress={() => router.push("/create")}
       />
     </View>

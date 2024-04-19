@@ -1,3 +1,4 @@
+import { router, usePathname } from "expo-router";
 import { useState } from "react";
 import { FlatList, Image, RefreshControl, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -6,17 +7,20 @@ import SearchInput from "../../components/SearchInput";
 import Trending from "../../components/Trending";
 import VideoCard from "../../components/VideoCard";
 import { images } from "../../constants";
-import { getAllPosts } from "../../lib/appwrite";
+import { useGlobalContext } from "../../context/GlobalProvider";
+import { getAllPosts, getLatestPosts } from "../../lib/appwrite";
 import { useAppWrite } from "../../lib/useAppWrite";
 
 export default function Home() {
-  const { data, refetch } = useAppWrite(getAllPosts);
+  const { data: posts, refetch: refetchAllPosts } = useAppWrite(getAllPosts);
+  const { data: trending, refetch: refetchLatest } = useAppWrite(getLatestPosts);
+  
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = async () => {
     setRefreshing(true);
 
-    await refetch();
+    await refetchAllPosts();
 
     setRefreshing(false);
   };
@@ -24,13 +28,12 @@ export default function Home() {
   return (
     <SafeAreaView className="bg-primary h-full">
       <FlatList
-        data={data}
+        data={posts}
         keyExtractor={(item) => item.$id}
         renderItem={({ item }) => {
-          console.log("item ", item);
           return <VideoCard data={item} />;
         }}
-        ListHeaderComponent={Header}
+        ListHeaderComponent={() => <Header data={trending} />}
         ListEmptyComponent={() => (
           <EmptyState
             title="No Videos Found"
@@ -45,25 +48,44 @@ export default function Home() {
   );
 }
 
-function Header() {
+function Header({ data }) {
+
+  const [query, setQuery] = useState("");
+  const pathname = usePathname();
+  const onSearch = (value) => {
+    if (!query) return;
+    if (pathname.startsWith("/search")) {
+      setQuery(value);
+      return;
+    }
+    router.push(`/search/${value}`);
+    
+  }
   return (
     <View className="my-6 px-4 space-y-6">
       <Title />
       <View>
-        <SearchInput placeholder="Search for a video topic" />
+        <SearchInput
+          placeholder="Search for a video topic"
+          value={query}
+          onChangeText={setQuery}
+          onSearch={onSearch}
+        />
       </View>
 
-      <LatestVideos />
+      <LatestVideos data={data} />
     </View>
   );
 }
 
 function Title() {
+  const { user } = useGlobalContext();
+
   return (
     <View className="flex-row justify-between items-center mb-6">
       <View>
         <Text className="text-gray-100 font-pmedium text-sm">Welcome Back</Text>
-        <Text className="text-white text-2xl font-psemibold">JsMastery</Text>
+        <Text className="text-white text-2xl font-psemibold">{user?.username || ""}</Text>
       </View>
       <View>
         <Image
@@ -76,11 +98,11 @@ function Title() {
   );
 }
 
-function LatestVideos() {
+function LatestVideos({ data }) {
   return (
     <View className="pt-5 pb-8">
       <Text className="text-gray-100  font-pregular mb-3">Latest Videos</Text>
-      <Trending data={[]} />
+      <Trending data={data} />
     </View>
   );
 }
