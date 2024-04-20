@@ -12,4 +12,8 @@
 
 ## Screenshoots
 
-https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/octocat.png
+https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/sign-in.png
+https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/sign-up.png
+https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/home.png
+https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/create.png
+https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/profile.png
