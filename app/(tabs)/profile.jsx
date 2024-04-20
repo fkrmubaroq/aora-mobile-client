@@ -16,7 +16,7 @@ export default function Profile() {
     await signOut();
     setUser(null);
     setIsLogged(false)
-    router.push("/sign-in");
+    router.replace("/sign-in");
   }
 
   return (
@@ -51,11 +51,13 @@ function ProfileInfo({ user, onSignOut, totalPost }) {
       </View>
 
       <View className="mx-auto mt-6 w-16 h-16 justify-center items-center border rounded-lg border-secondary">
-        <Image
-          className="w-[95%] h-[95%]  rounded-lg"
-          source={{ uri: user?.avatar || "" }}
-          resizeMode="contain"
-        />
+        {user?.avatar &&
+          <Image
+            className="w-[95%] h-[95%]  rounded-lg"
+            source={{ uri: user.avatar }}
+            resizeMode="contain"
+          />
+        }
       </View>
 
       <View className="flex-row justify-center items-center mt-8">

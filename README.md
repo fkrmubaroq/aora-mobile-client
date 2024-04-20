@@ -9,3 +9,7 @@
 - Run on both Android & iOS: `yarn mobile` (or `npm run mobile`).
 
 - Run server: `yarn start`. Then use app **Expo Go** on your mobile and scan QR code on the terminal.
+
+## Screenshoots
+
+https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/octocat.png
