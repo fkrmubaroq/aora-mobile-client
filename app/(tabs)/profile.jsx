@@ -28,7 +28,7 @@ export default function Profile() {
           return <VideoCard data={item} />;
         }}
         ListHeaderComponent={() => (
-          <ProfileInfo user={user} onSignOut={onSignOut} />
+          <ProfileInfo totalPost={posts.length} user={user} onSignOut={onSignOut} />
         )}
         ListEmptyComponent={() => (
           <EmptyState
@@ -41,7 +41,7 @@ export default function Profile() {
   );
 }
 
-function ProfileInfo({ user, onSignOut }) {
+function ProfileInfo({ user, onSignOut, totalPost }) {
   return (
     <View className="mb-10">
       <View className="w-full items-end px-4 pt-3">
@@ -59,7 +59,7 @@ function ProfileInfo({ user, onSignOut }) {
       </View>
 
       <View className="flex-row justify-center items-center mt-8">
-        <InfoBox title="3" subtitle="Posts" style="mr-10" />
+        <InfoBox title={totalPost} subtitle="Posts" style="mr-10" />
         <InfoBox title="1.2k" subtitle="Followers" />
       </View>
     </View>
