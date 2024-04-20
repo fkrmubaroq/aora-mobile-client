@@ -12,8 +12,8 @@
 
 ## Screenshoots
 
-https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/sign-in.png
-https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/sign-up.png
-https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/home.png
-https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/create.png
-https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/profile.png
+![alt text](https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/sign-in.png)
+![alt text](https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/sign-up.png)
+![alt text](https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/home.png)
+![alt text](https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/create.png)
+![alt text](https://github.com/fkrmubaroq/aora-mobile-client/blob/main/screenshoots/profile.png)
